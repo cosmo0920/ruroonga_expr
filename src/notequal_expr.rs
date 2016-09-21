@@ -33,7 +33,7 @@ impl<'a> NotequalExpr<'a, Unescaped> {
 }
 
 impl<'a> NotequalExpr<'a, Escaped> {
-    /// Build grn_expr for phrase search
+    /// Build grn_expr for not equal search
     pub fn build(self) -> String {
         format!("{}:!{}", self.column.into_owned(), self.target.into_owned())
     }

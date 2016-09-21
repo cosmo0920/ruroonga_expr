@@ -33,7 +33,7 @@ impl<'a> LessEqualExpr<'a, Unescaped> {
 }
 
 impl<'a> LessEqualExpr<'a, Escaped> {
-    /// Build grn_expr for less search
+    /// Build grn_expr for less equal search
     pub fn build(self) -> String {
         format!("{}:<={}",
                 self.column.into_owned(),

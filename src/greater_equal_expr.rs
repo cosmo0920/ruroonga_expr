@@ -33,7 +33,7 @@ impl<'a> GreaterEqualExpr<'a, Unescaped> {
 }
 
 impl<'a> GreaterEqualExpr<'a, Escaped> {
-    /// Build grn_expr for greater search
+    /// Build grn_expr for greater equal search
     pub fn build(self) -> String {
         format!("{}:>={}",
                 self.column.into_owned(),
