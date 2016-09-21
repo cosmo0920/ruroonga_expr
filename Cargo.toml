@@ -2,6 +2,10 @@
 name = "ruroonga_expr"
 version = "0.1.0"
 authors = ["Hiroshi Hatake <cosmo0920.wp@gmail.com>"]
+keywords = ["groonga"]
+description = "A tiny Groonga expression builder and generator."
+license-file = "LICENSE"
+repository = "https://github.com/cosmo0920/ruroonga_expr"
 
 [dependencies]
 regex-syntax = "~0.3"
