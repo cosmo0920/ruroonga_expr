@@ -1,0 +1,7 @@
+[package]
+name = "ruroonga_expr"
+version = "0.1.0"
+authors = ["Hiroshi Hatake <cosmo0920.wp@gmail.com>"]
+
+[dependencies]
+regex-syntax = "~0.3"
