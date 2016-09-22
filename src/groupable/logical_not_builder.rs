@@ -6,7 +6,7 @@
 
 use groupable::{Fragmentable, Groupable, Query};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LogicalNotBuilder {
     lhs: Query,
     rhs: Query,
