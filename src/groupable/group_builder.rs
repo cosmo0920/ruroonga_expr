@@ -4,8 +4,9 @@
 //!
 //! `expr1 expr2` =(grouping)=> `(expr1 expr2)`
 
-use groupable::{Fragmentable, Query};
+use groupable::{Fragmentable, Groupable, Query};
 
+#[derive(Debug, Clone)]
 pub struct GroupBuilder {
     lhs: Query,
     rhs: Query,
@@ -31,6 +32,13 @@ impl Fragmentable for GroupBuilder {
         vec![format!("{} {}",
                      self.lhs.into_iter().map(|e| e).collect::<String>(),
                      self.rhs.into_iter().map(|e| e).collect::<String>())]
+    }
+}
+
+impl Groupable for GroupBuilder {
+    fn to_group(self) -> Query {
+        vec![format!("({})",
+                     self.to_fragment().into_iter().map(|e| e).collect::<String>())]
     }
 }
 
@@ -77,6 +85,35 @@ mod tests {
         let result = GroupBuilder::new(comb_lexpr, logical_or_expr).build();
         let expected = concat!("\'n_likes:>=10 ",
                                "(language:@\"Rust lang\" - language:@\"Haskell lang\")\'");
+        assert_eq!(expected, result);
+    }
+
+    #[test]
+    fn test_build_with_nexted_logicals() {
+        let llexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
+        let lrexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
+        let llogical_or_expr = LogicalOrBuilder::new(llexpr, lrexpr).to_group();
+        let lcomb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
+        let llogical_expr = GroupBuilder::new(lcomb_lexpr, llogical_or_expr);
+        assert_eq!(concat!("\'n_likes:>=10 ",
+                           "(language:@\"Rust lang\" OR language:@\"Haskell lang\")\'"),
+                   llogical_expr.clone().build());
+
+        let rlexpr = PhraseExpr::new("Ruby lang").column("language").prepare().to_fragment();
+        let rrexpr = PhraseExpr::new("Python lang").column("language").prepare().to_fragment();
+        let rlogical_or_expr = LogicalOrBuilder::new(rlexpr, rrexpr).to_group();
+        let rcomb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
+        let rlogical_expr = GroupBuilder::new(rcomb_lexpr, rlogical_or_expr);
+        assert_eq!(concat!("\'n_likes:>=10 ",
+                           "(language:@\"Ruby lang\" OR language:@\"Python lang\")\'"),
+                   rlogical_expr.clone().build());
+
+        let result = LogicalAndBuilder::new(llogical_expr.to_group(),
+                                            rlogical_expr.to_group()).build();
+        let expected = concat!("\'(n_likes:>=10 ",
+                               "(language:@\"Rust lang\" OR language:@\"Haskell lang\")) ",
+                               "+ (n_likes:>=10 ",
+                               "(language:@\"Ruby lang\" OR language:@\"Python lang\"))\'");
         assert_eq!(expected, result);
     }
 }
