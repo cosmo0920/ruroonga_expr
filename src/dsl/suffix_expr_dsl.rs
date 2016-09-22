@@ -2,8 +2,9 @@ use expr::Unescaped;
 use suffix_expr::SuffixExpr;
 use std::borrow::Cow;
 
-pub fn suffix_expr<'a, T>(column: T,target: T) -> SuffixExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+pub fn suffix_expr<'a, T>(column: T, target: T) -> SuffixExpr<'a, Unescaped>
+    where T: Into<Cow<'a, str>>
+{
     SuffixExpr::new(column, target)
 }
 

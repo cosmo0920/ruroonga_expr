@@ -3,7 +3,8 @@ use phrase_expr::PhraseExpr;
 use std::borrow::Cow;
 
 pub fn phrase_expr<'a, T>(target: T) -> PhraseExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     PhraseExpr::new(target)
 }
 

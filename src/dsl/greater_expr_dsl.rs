@@ -3,7 +3,8 @@ use greater_expr::GreaterExpr;
 use std::borrow::Cow;
 
 pub fn greater_expr<'a, T>(column: T, target: T) -> GreaterExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     GreaterExpr::new(column, target)
 }
 

@@ -2,8 +2,9 @@ use expr::Unescaped;
 use prefix_expr::PrefixExpr;
 use std::borrow::Cow;
 
-pub fn prefix_expr<'a, T>(column: T,target: T) -> PrefixExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+pub fn prefix_expr<'a, T>(column: T, target: T) -> PrefixExpr<'a, Unescaped>
+    where T: Into<Cow<'a, str>>
+{
     PrefixExpr::new(column, target)
 }
 

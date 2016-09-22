@@ -108,8 +108,8 @@ mod tests {
                            "(language:@\"Ruby lang\" OR language:@\"Python lang\")\'"),
                    rlogical_expr.clone().build());
 
-        let result = LogicalAndBuilder::new(llogical_expr.to_group(),
-                                            rlogical_expr.to_group()).build();
+        let result = LogicalAndBuilder::new(llogical_expr.to_group(), rlogical_expr.to_group())
+            .build();
         let expected = concat!("\'(n_likes:>=10 ",
                                "(language:@\"Rust lang\" OR language:@\"Haskell lang\")) ",
                                "+ (n_likes:>=10 ",

@@ -3,7 +3,8 @@ use equal_expr::EqualExpr;
 use std::borrow::Cow;
 
 pub fn equal_expr<'a, T>(column: T, target: T) -> EqualExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     EqualExpr::new(column, target)
 }
 

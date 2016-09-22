@@ -3,7 +3,8 @@ use notequal_expr::NotequalExpr;
 use std::borrow::Cow;
 
 pub fn notequal_expr<'a, T>(column: T, target: T) -> NotequalExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     NotequalExpr::new(column, target)
 }
 

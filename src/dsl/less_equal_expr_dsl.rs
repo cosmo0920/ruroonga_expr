@@ -3,7 +3,8 @@ use less_equal_expr::LessEqualExpr;
 use std::borrow::Cow;
 
 pub fn less_equal_expr<'a, T>(column: T, target: T) -> LessEqualExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     LessEqualExpr::new(column, target)
 }
 

@@ -3,7 +3,8 @@ use fulltext_expr::FulltextExpr;
 use std::borrow::Cow;
 
 pub fn fulltext_expr<'a, T>(target: T) -> FulltextExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     FulltextExpr::new(target)
 }
 

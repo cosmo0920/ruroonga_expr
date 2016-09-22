@@ -3,7 +3,8 @@ use less_expr::LessExpr;
 use std::borrow::Cow;
 
 pub fn less_expr<'a, T>(column: T, target: T) -> LessExpr<'a, Unescaped>
-    where T: Into<Cow<'a, str>> {
+    where T: Into<Cow<'a, str>>
+{
     LessExpr::new(column, target)
 }
 
