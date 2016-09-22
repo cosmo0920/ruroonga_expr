@@ -22,7 +22,20 @@ extern crate ruroonga_expr;
 
 ### example
 
-TODO: Write me.
+```rust
+extern crate ruroonga_expr as expr;
+
+use expr::dsl::*;
+
+fn main() {
+    let lexpr = fulltext_expr("Rust").column("language").prepare();
+    let rexpr = fulltext_expr("Haskell").column("language").prepare();
+    let comb_lexpr = greater_equal_expr("n_likes", "10").prepare();
+    let result = (comb_lexpr % (lexpr + rexpr)).build();
+    println!("{}", result);
+    // #=> 'n_likes:>=10 (language:@Rust + language:@Haskell)'
+}
+```
 
 ### Target Rust Version
 
