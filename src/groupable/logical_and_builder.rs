@@ -1,3 +1,9 @@
+//! Create logical And Groonga expression.
+//!
+//! Put `+` between expr1 and expr2:
+//!
+//! `expr1 expr2` =(logical add)=> `expr1 + expr2`
+
 use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalAndBuilder {

@@ -1,3 +1,9 @@
+//! Create grouping Groonga expression.
+//!
+//! Put parentheses into outer places:
+//!
+//! `expr1 expr2` =(grouping)=> `(expr1 expr2)`
+
 use groupable::{Fragmentable, Query};
 
 pub struct GroupBuilder {

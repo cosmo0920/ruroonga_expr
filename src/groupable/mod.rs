@@ -5,9 +5,11 @@ pub mod group_builder;
 
 pub type Query = Vec<String>;
 pub trait Fragmentable {
+    /// Make groonga expression fragment.
     fn to_fragment(self) -> Query;
 }
 
 pub trait Groupable {
+    /// Make groupable groonga expression fragment.
     fn to_group(self) -> Query;
 }

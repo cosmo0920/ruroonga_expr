@@ -1,3 +1,9 @@
+//! Create logical Or Groonga expression.
+//!
+//! Put `OR` between expr1 and expr2:
+//!
+//! `expr1 expr2` =(logical or)=> `expr1 OR expr2`
+
 use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalOrBuilder {

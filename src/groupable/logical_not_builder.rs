@@ -1,3 +1,9 @@
+//! Create logical Not Groonga expression.
+//!
+//! Put `-` between expr1 and expr2:
+//!
+//! `expr1 expr2` =(logical not)=> `expr1 - expr2`
+
 use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalNotBuilder {
