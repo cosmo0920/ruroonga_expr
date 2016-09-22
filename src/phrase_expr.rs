@@ -3,7 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
-use groupable::{Groupable, Query};
+use groupable::{Fragmentable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PhraseExpr<'a, S: Any = Unescaped> {
@@ -62,7 +62,7 @@ impl<'a> PhraseExpr<'a, Escaped> {
     }
 }
 
-impl<'a> Groupable for PhraseExpr<'a, Escaped> {
+impl<'a> Fragmentable for PhraseExpr<'a, Escaped> {
     fn to_fragment(self) -> Query {
         vec![self.build()]
     }

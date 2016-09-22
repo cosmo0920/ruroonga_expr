@@ -3,7 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
-use groupable::{Groupable, Query};
+use groupable::{Fragmentable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct NotequalExpr<'a, S: Any = Unescaped> {
@@ -40,7 +40,7 @@ impl<'a> NotequalExpr<'a, Escaped> {
     }
 }
 
-impl<'a> Groupable for NotequalExpr<'a, Escaped> {
+impl<'a> Fragmentable for NotequalExpr<'a, Escaped> {
     fn to_fragment(self) -> Query {
         vec![self.build()]
     }

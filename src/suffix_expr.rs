@@ -3,7 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
-use groupable::{Groupable, Query};
+use groupable::{Fragmentable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SuffixExpr<'a, S: Any = Unescaped> {
@@ -40,7 +40,7 @@ impl<'a> SuffixExpr<'a, Escaped> {
     }
 }
 
-impl<'a> Groupable for SuffixExpr<'a, Escaped> {
+impl<'a> Fragmentable for SuffixExpr<'a, Escaped> {
     fn to_fragment(self) -> Query {
         vec![self.build()]
     }

@@ -1,4 +1,4 @@
-use groupable::Query;
+use groupable::{Fragmentable, Query};
 
 pub struct LogicalOrBuilder {
     lhs: Query,
@@ -25,7 +25,7 @@ mod tests {
     use super::*;
     use phrase_expr::PhraseExpr;
     use greater_equal_expr::GreaterEqualExpr;
-    use groupable::Groupable;
+    use groupable::Fragmentable;
 
     #[test]
     fn test_build() {

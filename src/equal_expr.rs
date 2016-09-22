@@ -3,6 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
+use groupable::{Fragmentable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct EqualExpr<'a, S: Any = Unescaped> {
@@ -36,6 +37,12 @@ impl<'a> EqualExpr<'a, Escaped> {
     /// Build grn_expr for equal search
     pub fn build(self) -> String {
         format!("{}:{}", self.column.into_owned(), self.target.into_owned())
+    }
+}
+
+impl<'a> Fragmentable for EqualExpr<'a, Escaped> {
+    fn to_fragment(self) -> Query {
+        vec![self.build()]
     }
 }
 

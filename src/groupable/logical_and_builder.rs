@@ -1,4 +1,4 @@
-use groupable::Query;
+use groupable::{Fragmentable, Query};
 
 pub struct LogicalAndBuilder {
     lhs: Query,
@@ -20,12 +20,20 @@ impl LogicalAndBuilder {
     }
 }
 
+impl Fragmentable for LogicalAndBuilder {
+    fn to_fragment(self) -> Query {
+        vec![format!("{} + {}",
+                     self.lhs.into_iter().map(|e| e).collect::<String>(),
+                     self.rhs.into_iter().map(|e| e).collect::<String>())]
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use fulltext_expr::FulltextExpr;
     use greater_expr::GreaterExpr;
-    use groupable::Groupable;
+    use groupable::Fragmentable;
 
     #[test]
     fn test_build() {

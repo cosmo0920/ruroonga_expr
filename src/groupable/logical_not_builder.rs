@@ -1,4 +1,4 @@
-use groupable::Query;
+use groupable::{Fragmentable, Query};
 
 pub struct LogicalNotBuilder {
     lhs: Query,
@@ -25,7 +25,7 @@ mod tests {
     use super::*;
     use match_expr::MatchExpr;
     use less_expr::LessExpr;
-    use groupable::Groupable;
+    use groupable::Fragmentable;
 
     #[test]
     fn test_build() {
