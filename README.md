@@ -2,7 +2,7 @@ Ruroonga Expr
 ===
 
 [![Build Status](https://travis-ci.org/cosmo0920/ruroonga_expr.svg?branch=master)](https://travis-ci.org/cosmo0920/ruroonga_expr)
-[![](http://meritbadge.herokuapp.com/ruroonga_command)](https://crates.io/crates/ruroonga_expr)
+[![](http://meritbadge.herokuapp.com/ruroonga_expr)](https://crates.io/crates/ruroonga_expr)
 [![Build status](https://ci.appveyor.com/api/projects/status/aswt870li4nkptjf/branch/master?svg=true)](https://ci.appveyor.com/project/cosmo0920/ruroonga-expr/branch/master)
 
 ## A Groonga Expr Builder for Rust.
