@@ -5,6 +5,8 @@ Ruroonga Expr
 [![](http://meritbadge.herokuapp.com/ruroonga_expr)](https://crates.io/crates/ruroonga_expr)
 [![Build status](https://ci.appveyor.com/api/projects/status/aswt870li4nkptjf/branch/master?svg=true)](https://ci.appveyor.com/project/cosmo0920/ruroonga-expr/branch/master)
 
+[Documentation](http://cosmo0920.github.io/ruroonga_expr/ruroonga_expr/index.html)
+
 ## A Groonga Expr Builder for Rust.
 
 ruroonga_expr provides Groonga expression builder and generator for query syntax. It reduces runtime errors about Groonga expression.
