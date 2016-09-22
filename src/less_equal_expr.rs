@@ -4,6 +4,10 @@ use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
 use groupable::{Fragmentable, Query};
+use std::ops::{Add, Sub, BitOr};
+use groupable::logical_or_builder::LogicalOrBuilder;
+use groupable::logical_and_builder::LogicalAndBuilder;
+use groupable::logical_not_builder::LogicalNotBuilder;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LessEqualExpr<'a, S: Any = Unescaped> {
@@ -45,6 +49,27 @@ impl<'a> LessEqualExpr<'a, Escaped> {
 impl<'a> Fragmentable for LessEqualExpr<'a, Escaped> {
     fn to_fragment(self) -> Query {
         vec![self.build()]
+    }
+}
+
+impl<'a, T: Fragmentable> Add<T>  for LessEqualExpr<'a, Escaped> {
+    type Output = LogicalAndBuilder;
+    fn add(self, rhs: T) -> LogicalAndBuilder {
+        LogicalAndBuilder::new(self.to_fragment(), rhs.to_fragment())
+    }
+}
+
+impl<'a, T: Fragmentable> Sub<T> for LessEqualExpr<'a, Escaped> {
+    type Output = LogicalNotBuilder;
+    fn sub(self, rhs: T) -> LogicalNotBuilder {
+        LogicalNotBuilder::new(self.to_fragment(), rhs.to_fragment())
+    }
+}
+
+impl<'a, T: Fragmentable> BitOr<T> for LessEqualExpr<'a, Escaped> {
+    type Output = LogicalOrBuilder;
+    fn bitor(self, rhs: T) -> LogicalOrBuilder {
+        LogicalOrBuilder::new(self.to_fragment(), rhs.to_fragment())
     }
 }
 
