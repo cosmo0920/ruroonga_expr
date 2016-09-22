@@ -6,6 +6,8 @@
 extern crate regex_syntax;
 
 mod exprable;
+#[macro_use]
+pub mod macros;
 pub mod expr;
 pub mod fulltext_expr;
 pub mod phrase_expr;
