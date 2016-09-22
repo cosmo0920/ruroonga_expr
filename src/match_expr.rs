@@ -34,7 +34,7 @@ impl<'a> MatchExpr<'a, Unescaped> {
                     _marker: PhantomData,
                 })
             }
-            Err(e) => Err(format!("{} Reason: {}", "Could not parse regex.".to_string(), e)),
+            Err(e) => Err(format!("{} Reason: {}", "Could not parse regex.", e)),
         }
     }
 }
