@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `less_expr` fn in crate `ruroonga_expr`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, less_expr">
+    <meta name="description" content="API documentation for the Rust `group` fn in crate `ruroonga_expr`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, group">
 
-    <title>ruroonga_expr::dsl::less_expr - Rust</title>
+    <title>ruroonga_expr::dsl::logical::group - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
     
 
     
@@ -28,7 +28,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='../index.html'>ruroonga_expr</a>::<wbr><a href='index.html'>dsl</a></p><script>window.sidebarCurrent = {name: 'less_expr', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'><a href='../../index.html'>ruroonga_expr</a>::<wbr><a href='../index.html'>dsl</a>::<wbr><a href='index.html'>logical</a></p><script>window.sidebarCurrent = {name: 'group', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -43,12 +43,12 @@
     </nav>
 
     <section id='main' class="content fn">
-<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>ruroonga_expr</a>::<wbr><a href='index.html'>dsl</a>::<wbr><a class='fn' href=''>less_expr</a></span><span class='out-of-band'><span id='render-detail'>
+<h1 class='fqn'><span class='in-band'>Function <a href='../../index.html'>ruroonga_expr</a>::<wbr><a href='../index.html'>dsl</a>::<wbr><a href='index.html'>logical</a>::<wbr><a class='fn' href=''>group</a></span><span class='out-of-band'><span id='render-detail'>
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1672' class='srclink' href='../../src/ruroonga_expr/src/dsl/less_expr_dsl.rs.html#5-9' title='goto source code'>[src]</a></span></h1>
-<pre class='rust fn'>pub fn less_expr&lt;'a,&nbsp;T&gt;(column: T, target: T) -&gt; <a class='struct' href='../../ruroonga_expr/less_expr/struct.LessExpr.html' title='ruroonga_expr::less_expr::LessExpr'>LessExpr</a>&lt;'a,&nbsp;<a class='enum' href='../../ruroonga_expr/expr/enum.Unescaped.html' title='ruroonga_expr::expr::Unescaped'>Unescaped</a>&gt; <span class='where'>where T: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'a,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</span></pre></section>
+               </span><a id='src-1726' class='srclink' href='../../../src/ruroonga_expr/src/dsl/builder/group_builder_dsl.rs.html#4-6' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn group(lhs: <a class='type' href='../../../ruroonga_expr/groupable/type.Query.html' title='ruroonga_expr::groupable::Query'>Query</a>, rhs: <a class='type' href='../../../ruroonga_expr/groupable/type.Query.html' title='ruroonga_expr::groupable::Query'>Query</a>) -&gt; <a class='struct' href='../../../ruroonga_expr/groupable/group_builder/struct.GroupBuilder.html' title='ruroonga_expr::groupable::group_builder::GroupBuilder'>GroupBuilder</a></pre></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -102,13 +102,13 @@
     
 
     <script>
-        window.rootPath = "../../";
+        window.rootPath = "../../../";
         window.currentCrate = "ruroonga_expr";
         window.playgroundUrl = "";
     </script>
-    <script src="../../jquery.js"></script>
-    <script src="../../main.js"></script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
     
-    <script defer src="../../search-index.js"></script>
+    <script defer src="../../../search-index.js"></script>
 </body>
 </html>

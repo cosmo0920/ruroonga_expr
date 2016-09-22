@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["and",""],["not",""],["or",""]]});
+initSidebarItems({"fn":[["and",""],["group",""],["not",""],["or",""]]});

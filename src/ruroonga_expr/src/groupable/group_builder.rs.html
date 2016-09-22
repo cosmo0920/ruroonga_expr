@@ -161,6 +161,8 @@
 <span id="117">117</span>
 <span id="118">118</span>
 <span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Create grouping Groonga expression.</span>
 <span class='doccomment'>//!</span>
@@ -170,7 +172,7 @@
 
 <span class='kw'>use</span> <span class='ident'>groupable</span>::{<span class='ident'>Fragmentable</span>, <span class='ident'>Groupable</span>, <span class='ident'>Query</span>};
 
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Clone</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>GroupBuilder</span> {
     <span class='ident'>lhs</span>: <span class='ident'>Query</span>,
     <span class='ident'>rhs</span>: <span class='ident'>Query</span>,
@@ -205,6 +207,8 @@
                      <span class='self'>self</span>.<span class='ident'>to_fragment</span>().<span class='ident'>into_iter</span>().<span class='ident'>map</span>(<span class='op'>|</span><span class='ident'>e</span><span class='op'>|</span> <span class='ident'>e</span>).<span class='ident'>collect</span>::<span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>())]
     }
 }
+
+<span class='comment'>// TODO: More std::ops::* definition is needed?</span>
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span> {
@@ -253,7 +257,7 @@
     }
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
-    <span class='kw'>fn</span> <span class='ident'>test_build_with_nexted_logicals</span>() {
+    <span class='kw'>fn</span> <span class='ident'>test_build_with_nested_logicals</span>() {
         <span class='kw'>let</span> <span class='ident'>llexpr</span> <span class='op'>=</span> <span class='ident'>PhraseExpr</span>::<span class='ident'>new</span>(<span class='string'>&quot;Rust lang&quot;</span>).<span class='ident'>column</span>(<span class='string'>&quot;language&quot;</span>).<span class='ident'>prepare</span>().<span class='ident'>to_fragment</span>();
         <span class='kw'>let</span> <span class='ident'>lrexpr</span> <span class='op'>=</span> <span class='ident'>PhraseExpr</span>::<span class='ident'>new</span>(<span class='string'>&quot;Haskell lang&quot;</span>).<span class='ident'>column</span>(<span class='string'>&quot;language&quot;</span>).<span class='ident'>prepare</span>().<span class='ident'>to_fragment</span>();
         <span class='kw'>let</span> <span class='ident'>llogical_or_expr</span> <span class='op'>=</span> <span class='ident'>LogicalOrBuilder</span>::<span class='ident'>new</span>(<span class='ident'>llexpr</span>, <span class='ident'>lrexpr</span>).<span class='ident'>to_group</span>();
@@ -272,8 +276,8 @@
                            <span class='string'>&quot;(language:@\&quot;Ruby lang\&quot; OR language:@\&quot;Python lang\&quot;)\&#39;&quot;</span>),
                    <span class='ident'>rlogical_expr</span>.<span class='ident'>clone</span>().<span class='ident'>build</span>());
 
-        <span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>LogicalAndBuilder</span>::<span class='ident'>new</span>(<span class='ident'>llogical_expr</span>.<span class='ident'>to_group</span>(),
-                                            <span class='ident'>rlogical_expr</span>.<span class='ident'>to_group</span>()).<span class='ident'>build</span>();
+        <span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>LogicalAndBuilder</span>::<span class='ident'>new</span>(<span class='ident'>llogical_expr</span>.<span class='ident'>to_group</span>(), <span class='ident'>rlogical_expr</span>.<span class='ident'>to_group</span>())
+            .<span class='ident'>build</span>();
         <span class='kw'>let</span> <span class='ident'>expected</span> <span class='op'>=</span> <span class='macro'>concat</span><span class='macro'>!</span>(<span class='string'>&quot;\&#39;(n_likes:&gt;=10 &quot;</span>,
                                <span class='string'>&quot;(language:@\&quot;Rust lang\&quot; OR language:@\&quot;Haskell lang\&quot;)) &quot;</span>,
                                <span class='string'>&quot;+ (n_likes:&gt;=10 &quot;</span>,
