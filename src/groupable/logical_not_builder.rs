@@ -1,4 +1,4 @@
-use groupable::{Fragmentable, Query};
+use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalNotBuilder {
     lhs: Query,
@@ -17,6 +17,21 @@ impl LogicalNotBuilder {
         format!("\'{} - {}\'",
                 self.lhs.into_iter().map(|e| e).collect::<String>(),
                 self.rhs.into_iter().map(|e| e).collect::<String>())
+    }
+}
+
+impl Fragmentable for LogicalNotBuilder {
+    fn to_fragment(self) -> Query {
+        vec![format!("{} - {}",
+                     self.lhs.into_iter().map(|e| e).collect::<String>(),
+                     self.rhs.into_iter().map(|e| e).collect::<String>())]
+    }
+}
+
+impl Groupable for LogicalNotBuilder {
+    fn to_group(self) -> Query {
+        vec![format!("({})",
+                     self.to_fragment().into_iter().map(|e| e).collect::<String>())]
     }
 }
 

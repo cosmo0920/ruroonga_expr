@@ -1,4 +1,4 @@
-use groupable::{Fragmentable, Query};
+use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalOrBuilder {
     lhs: Query,
@@ -17,6 +17,21 @@ impl LogicalOrBuilder {
         format!("\'{} OR {}\'",
                 self.lhs.into_iter().map(|e| e).collect::<String>(),
                 self.rhs.into_iter().map(|e| e).collect::<String>())
+    }
+}
+
+impl Fragmentable for LogicalOrBuilder {
+    fn to_fragment(self) -> Query {
+        vec![format!("{} OR {}",
+                     self.lhs.into_iter().map(|e| e).collect::<String>(),
+                     self.rhs.into_iter().map(|e| e).collect::<String>())]
+    }
+}
+
+impl Groupable for LogicalOrBuilder {
+    fn to_group(self) -> Query {
+        vec![format!("({})",
+                     self.to_fragment().into_iter().map(|e| e).collect::<String>())]
     }
 }
 

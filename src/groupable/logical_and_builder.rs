@@ -1,4 +1,4 @@
-use groupable::{Fragmentable, Query};
+use groupable::{Fragmentable, Groupable, Query};
 
 pub struct LogicalAndBuilder {
     lhs: Query,
@@ -25,6 +25,13 @@ impl Fragmentable for LogicalAndBuilder {
         vec![format!("{} + {}",
                      self.lhs.into_iter().map(|e| e).collect::<String>(),
                      self.rhs.into_iter().map(|e| e).collect::<String>())]
+    }
+}
+
+impl Groupable for LogicalAndBuilder {
+    fn to_group(self) -> Query {
+        vec![format!("({})",
+                     self.to_fragment().into_iter().map(|e| e).collect::<String>())]
     }
 }
 
