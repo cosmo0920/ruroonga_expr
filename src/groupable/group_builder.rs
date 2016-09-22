@@ -89,7 +89,7 @@ mod tests {
     }
 
     #[test]
-    fn test_build_with_nexted_logicals() {
+    fn test_build_with_nested_logicals() {
         let llexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
         let lrexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
         let llogical_or_expr = LogicalOrBuilder::new(llexpr, lrexpr).to_group();
