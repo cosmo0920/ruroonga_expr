@@ -3,7 +3,7 @@ Ruroonga Expr
 
 ## A Groonga Expr Builder for Rust.
 
-ruroonga_expr provides Groonga expression builder and generator. It reduces runtime errors about Groonga expression.
+ruroonga_expr provides Groonga expression builder and generator for query syntax. It reduces runtime errors about Groonga expression.
 
 ## Usage
 
