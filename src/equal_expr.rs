@@ -56,8 +56,7 @@ impl<'a, T: Fragmentable> Add<T> for EqualExpr<'a, Escaped> {
     /// Make LogicalAndBuilder with add operation.
     ///
     /// **@overloaded**
-    fn add(self, rhs: T) -> LogicalAndBuilder
-    {
+    fn add(self, rhs: T) -> LogicalAndBuilder {
         LogicalAndBuilder::new(self.to_fragment(), rhs.to_fragment())
     }
 }
@@ -87,8 +86,7 @@ impl<'a, T: Groupable> Rem<T> for EqualExpr<'a, Escaped> {
     /// Make GroupBuilder with rem operation.
     ///
     /// **@overloaded**
-    fn rem(self, rhs: T) -> GroupBuilder
-    {
+    fn rem(self, rhs: T) -> GroupBuilder {
         GroupBuilder::new(self.to_fragment(), rhs.to_group())
     }
 }
