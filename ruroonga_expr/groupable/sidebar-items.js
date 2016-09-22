@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["group_builder","Create grouping Groonga expression."],["logical_and_builder","Create logical And Groonga expression."],["logical_not_builder","Create logical Not Groonga expression."],["logical_or_builder","Create logical Or Groonga expression."]],"trait":[["Fragmentable",""],["Groupable",""]],"type":[["Query",""]]});
