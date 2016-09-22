@@ -4,8 +4,9 @@ use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
 use regex_syntax::Expr;
-use groupable::{Fragmentable, Query};
-use std::ops::{Add, Sub, BitOr};
+use groupable::{Fragmentable, Groupable, Query};
+use std::ops::{Add, Sub, BitOr, Rem};
+use groupable::group_builder::GroupBuilder;
 use groupable::logical_or_builder::LogicalOrBuilder;
 use groupable::logical_and_builder::LogicalAndBuilder;
 use groupable::logical_not_builder::LogicalNotBuilder;
@@ -74,6 +75,14 @@ impl<'a, T: Fragmentable> BitOr<T>for MatchExpr<'a, Escaped> {
     type Output = LogicalOrBuilder;
     fn bitor(self, rhs: T) -> LogicalOrBuilder {
         LogicalOrBuilder::new(self.to_fragment(), rhs.to_fragment())
+    }
+}
+
+impl<'a, T: Groupable> Rem<T> for MatchExpr<'a, Escaped> {
+    type Output = GroupBuilder;
+    fn rem(self, rhs: T) -> GroupBuilder
+    {
+        GroupBuilder::new(self.to_fragment(), rhs.to_group())
     }
 }
 
