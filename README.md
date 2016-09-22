@@ -1,6 +1,8 @@
 Ruroonga Expr
 ===
 
+[![Build Status](https://travis-ci.org/cosmo0920/ruroonga_expr.svg?branch=master)](https://travis-ci.org/cosmo0920/ruroonga_expr)
+
 ## A Groonga Expr Builder for Rust.
 
 ruroonga_expr provides Groonga expression builder and generator for query syntax. It reduces runtime errors about Groonga expression.
