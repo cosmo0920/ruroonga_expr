@@ -3,6 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
+use groupable::{Groupable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PrefixExpr<'a, S: Any = Unescaped> {
@@ -36,6 +37,12 @@ impl<'a> PrefixExpr<'a, Escaped> {
     /// Build grn_expr for prefix search
     pub fn build(self) -> String {
         format!("{}:^{}", self.column.into_owned(), self.target.into_owned())
+    }
+}
+
+impl<'a> Groupable for PrefixExpr<'a, Escaped> {
+    fn to_fragment(self) -> Query {
+        vec![self.build()]
     }
 }
 

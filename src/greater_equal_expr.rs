@@ -3,6 +3,7 @@ use exprable::Escape;
 use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
+use groupable::{Groupable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GreaterEqualExpr<'a, S: Any = Unescaped> {
@@ -38,6 +39,12 @@ impl<'a> GreaterEqualExpr<'a, Escaped> {
         format!("{}:>={}",
                 self.column.into_owned(),
                 self.target.into_owned())
+    }
+}
+
+impl<'a> Groupable for GreaterEqualExpr<'a, Escaped> {
+    fn to_fragment(self) -> Query {
+        vec![self.build()]
     }
 }
 

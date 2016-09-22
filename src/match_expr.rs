@@ -4,6 +4,7 @@ use std::any::Any;
 use std::marker::PhantomData;
 use expr::{Unescaped, Escaped};
 use regex_syntax::Expr;
+use groupable::{Groupable, Query};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct MatchExpr<'a, S: Any = Unescaped> {
@@ -42,6 +43,12 @@ impl<'a> MatchExpr<'a, Escaped> {
     /// Build grn_expr for greater search
     pub fn build(self) -> String {
         format!("{}:~{}", self.column.into_owned(), self.regex.into_owned())
+    }
+}
+
+impl<'a> Groupable for MatchExpr<'a, Escaped> {
+    fn to_fragment(self) -> Query {
+        vec![self.build()]
     }
 }
 
