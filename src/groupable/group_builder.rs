@@ -42,6 +42,8 @@ impl Groupable for GroupBuilder {
     }
 }
 
+// TODO: More std::ops::* definition is needed?
+
 #[cfg(test)]
 mod tests {
     use super::*;
