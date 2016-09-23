@@ -34,8 +34,8 @@ extern crate ruroonga_expr as expr;
 use expr::dsl::*;
 
 fn main() {
-    let lexpr = fulltext_expr("Rust").column("language").prepare();
-    let rexpr = fulltext_expr("Haskell").column("language").prepare();
+    let lexpr = fulltext_expr("Rust").column("language").prepare().unwrap();
+    let rexpr = fulltext_expr("Haskell").column("language").prepare().unwrap();
     let comb_lexpr = greater_equal_expr("n_likes", "10").prepare();
     let result = (comb_lexpr % (lexpr + rexpr)).build();
     println!("{}", result);
