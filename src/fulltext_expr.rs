@@ -68,7 +68,7 @@ impl<'a> Fragmentable for FulltextExpr<'a, Escaped> {
     }
 }
 
-operators!(FulltextExpr);
+operators!(FulltextExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

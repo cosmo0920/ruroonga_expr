@@ -68,7 +68,7 @@ impl<'a> Fragmentable for PhraseExpr<'a, Escaped> {
     }
 }
 
-operators!(PhraseExpr);
+operators!(PhraseExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

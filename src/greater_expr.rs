@@ -46,7 +46,7 @@ impl<'a> Fragmentable for GreaterExpr<'a, Escaped> {
     }
 }
 
-operators!(GreaterExpr);
+operators!(GreaterExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

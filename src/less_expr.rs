@@ -46,7 +46,7 @@ impl<'a> Fragmentable for LessExpr<'a, Escaped> {
     }
 }
 
-operators!(LessExpr);
+operators!(LessExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

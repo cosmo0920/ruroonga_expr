@@ -48,7 +48,7 @@ impl<'a> Fragmentable for GreaterEqualExpr<'a, Escaped> {
     }
 }
 
-operators!(GreaterEqualExpr);
+operators!(GreaterEqualExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

@@ -46,7 +46,7 @@ impl<'a> Fragmentable for SuffixExpr<'a, Escaped> {
     }
 }
 
-operators!(SuffixExpr);
+operators!(SuffixExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

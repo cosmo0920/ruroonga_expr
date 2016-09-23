@@ -46,7 +46,7 @@ impl<'a> Fragmentable for PrefixExpr<'a, Escaped> {
     }
 }
 
-operators!(PrefixExpr);
+operators!(PrefixExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

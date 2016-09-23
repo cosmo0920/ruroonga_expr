@@ -46,7 +46,7 @@ impl<'a> Fragmentable for NotequalExpr<'a, Escaped> {
     }
 }
 
-operators!(NotequalExpr);
+operators!(NotequalExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

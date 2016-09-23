@@ -52,7 +52,7 @@ impl<'a> Fragmentable for MatchExpr<'a, Escaped> {
     }
 }
 
-operators!(MatchExpr);
+operators!(MatchExpr<'a, Escaped>);
 
 #[cfg(test)]
 mod tests {

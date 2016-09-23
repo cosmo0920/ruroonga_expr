@@ -1,5 +1,5 @@
-macro_rules! operators { ($t:ident) => {
-    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::Add<T> for $t<'a, $crate::expr::Escaped> {
+macro_rules! operators { ($t:ty) => {
+    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::Add<T> for $t {
         type Output = $crate::groupable::logical_and_builder::LogicalAndBuilder;
 /// Make LogicalAndBuilder with add operation.
 ///
@@ -9,7 +9,7 @@ macro_rules! operators { ($t:ident) => {
         }
     }
 
-    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::Sub<T> for $t<'a, $crate::expr::Escaped> {
+    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::Sub<T> for $t {
         type Output = $crate::groupable::logical_not_builder::LogicalNotBuilder;
 /// Make LogicalNotBuilder with sub operation.
 ///
@@ -19,7 +19,7 @@ macro_rules! operators { ($t:ident) => {
         }
     }
 
-    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::BitOr<T> for $t<'a, $crate::expr::Escaped> {
+    impl<'a, T: $crate::groupable::Fragmentable> ::std::ops::BitOr<T> for $t {
         type Output = $crate::groupable::logical_or_builder::LogicalOrBuilder;
 /// Make LogicalOrBuilder with bitor operation.
 ///
@@ -29,7 +29,7 @@ macro_rules! operators { ($t:ident) => {
         }
     }
 
-    impl<'a, T: $crate::groupable::Groupable> ::std::ops::Rem<T> for $t<'a, Escaped> {
+    impl<'a, T: $crate::groupable::Groupable> ::std::ops::Rem<T> for $t {
         type Output = $crate::groupable::group_builder::GroupBuilder;
 /// Make GroupBuilder with rem operation.
 ///
