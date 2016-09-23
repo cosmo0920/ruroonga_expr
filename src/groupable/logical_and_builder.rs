@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn test_build() {
-        let lexpr = FulltextExpr::new("text").column("freq").prepare().to_fragment();
+        let lexpr = FulltextExpr::new("text").column("freq").prepare().unwrap().to_fragment();
         let rexpr = GreaterExpr::new("n_likes", "5").prepare().to_fragment();
         let logical_and_expr = LogicalAndBuilder::new(lexpr, rexpr);
         let result = logical_and_expr.build();

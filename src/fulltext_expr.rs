@@ -39,16 +39,16 @@ impl<'a> FulltextExpr<'a, Unescaped> {
     /// ## Panics
     ///
     /// When target contains ' '(space).
-    pub fn prepare(self) -> FulltextExpr<'a, Escaped> {
+    pub fn prepare(self) -> Result<FulltextExpr<'a, Escaped>, String> {
         if self.is_invalid() {
-            panic!("Could not contain space(s) in target.");
+            return Err("Could not contain space(s) in target.".to_string());
         }
 
-        FulltextExpr {
+        Ok(FulltextExpr {
             target: format!("{}", Escape(&*self.target.into_owned())).into(),
             column: self.column,
             _marker: PhantomData,
-        }
+        })
     }
 }
 
@@ -91,11 +91,11 @@ mod tests {
     #[test]
     fn test_prepare() {
         let expr = FulltextExpr::new("test").prepare();
-        let expected = FulltextExpr::<Escaped> {
+        let expected = Ok(FulltextExpr::<Escaped> {
             target: Cow::Borrowed("test"),
             column: None,
             _marker: PhantomData,
-        };
+        });
         assert_eq!(expected, expr)
     }
 
@@ -109,14 +109,14 @@ mod tests {
 
     #[test]
     fn test_build() {
-        let expr = FulltextExpr::new("test").prepare().build();
+        let expr = FulltextExpr::new("test").prepare().unwrap().build();
         let expected = "test";
         assert_eq!(expected, expr)
     }
 
     #[test]
     fn test_build_with_column() {
-        let expr = FulltextExpr::new("test").column("target").prepare().build();
+        let expr = FulltextExpr::new("test").column("target").prepare().unwrap().build();
         let expected = "target:@test";
         assert_eq!(expected, expr)
     }

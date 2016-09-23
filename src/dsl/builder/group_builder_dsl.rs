@@ -15,7 +15,7 @@ mod tests {
 
     #[test]
     fn test_logical_or() {
-        let lexpr = FulltextExpr::new("text").column("freq").prepare().to_fragment();
+        let lexpr = FulltextExpr::new("text").column("freq").prepare().unwrap().to_fragment();
         let rexpr = GreaterExpr::new("n_likes", "5").prepare().to_fragment();
         let syntax = group(lexpr.clone(), rexpr.clone());
         let logical_or_expr = GroupBuilder::new(lexpr, rexpr);

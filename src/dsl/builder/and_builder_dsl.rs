@@ -15,7 +15,7 @@ mod tests {
 
     #[test]
     fn test_logical_and() {
-        let lexpr = FulltextExpr::new("text").column("freq").prepare().to_fragment();
+        let lexpr = FulltextExpr::new("text").column("freq").prepare().unwrap().to_fragment();
         let rexpr = GreaterExpr::new("n_likes", "5").prepare().to_fragment();
         let syntax = and(lexpr.clone(), rexpr.clone());
         let logical_and_expr = LogicalAndBuilder::new(lexpr, rexpr);
