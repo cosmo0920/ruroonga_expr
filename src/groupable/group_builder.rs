@@ -56,8 +56,8 @@ mod tests {
 
     #[test]
     fn test_build_with_logical_or() {
-        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
-        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
+        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().unwrap().to_fragment();
+        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().unwrap().to_fragment();
         let logical_or_expr = LogicalOrBuilder::new(lexpr, rexpr).to_group();
         let comb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let result = GroupBuilder::new(comb_lexpr, logical_or_expr).build();
@@ -68,8 +68,8 @@ mod tests {
 
     #[test]
     fn test_build_with_logical_and() {
-        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
-        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
+        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().unwrap().to_fragment();
+        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().unwrap().to_fragment();
         let logical_or_expr = LogicalAndBuilder::new(lexpr, rexpr).to_group();
         let comb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let result = GroupBuilder::new(comb_lexpr, logical_or_expr).build();
@@ -80,8 +80,8 @@ mod tests {
 
     #[test]
     fn test_build_with_logical_not() {
-        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
-        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
+        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().unwrap().to_fragment();
+        let rexpr = PhraseExpr::new("Haskell lang").column("language").prepare().unwrap().to_fragment();
         let logical_or_expr = LogicalNotBuilder::new(lexpr, rexpr).to_group();
         let comb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let result = GroupBuilder::new(comb_lexpr, logical_or_expr).build();
@@ -92,8 +92,8 @@ mod tests {
 
     #[test]
     fn test_build_with_nested_logicals() {
-        let llexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
-        let lrexpr = PhraseExpr::new("Haskell lang").column("language").prepare().to_fragment();
+        let llexpr = PhraseExpr::new("Rust lang").column("language").prepare().unwrap().to_fragment();
+        let lrexpr = PhraseExpr::new("Haskell lang").column("language").prepare().unwrap().to_fragment();
         let llogical_or_expr = LogicalOrBuilder::new(llexpr, lrexpr).to_group();
         let lcomb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let llogical_expr = GroupBuilder::new(lcomb_lexpr, llogical_or_expr);
@@ -101,8 +101,8 @@ mod tests {
                            "(language:@\"Rust lang\" OR language:@\"Haskell lang\")\'"),
                    llogical_expr.clone().build());
 
-        let rlexpr = PhraseExpr::new("Ruby lang").column("language").prepare().to_fragment();
-        let rrexpr = PhraseExpr::new("Python lang").column("language").prepare().to_fragment();
+        let rlexpr = PhraseExpr::new("Ruby lang").column("language").prepare().unwrap().to_fragment();
+        let rrexpr = PhraseExpr::new("Python lang").column("language").prepare().unwrap().to_fragment();
         let rlogical_or_expr = LogicalOrBuilder::new(rlexpr, rrexpr).to_group();
         let rcomb_lexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let rlogical_expr = GroupBuilder::new(rcomb_lexpr, rlogical_or_expr);

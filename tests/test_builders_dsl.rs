@@ -4,8 +4,8 @@ use ruroonga_expr::groupable::{Groupable, Fragmentable};
 #[test]
 fn test_build_with_nested_logicals() {
 
-    let llexpr = phrase_expr("Rust lang").column("language").prepare().to_fragment();
-    let lrexpr = phrase_expr("Haskell lang").column("language").prepare().to_fragment();
+    let llexpr = phrase_expr("Rust lang").column("language").prepare().unwrap().to_fragment();
+    let lrexpr = phrase_expr("Haskell lang").column("language").prepare().unwrap().to_fragment();
     let llogical_or_expr = logical::or(llexpr, lrexpr).to_group();
     let lcomb_lexpr = greater_equal_expr("n_likes", "10").prepare().to_fragment();
     let llogical_expr = logical::group(lcomb_lexpr, llogical_or_expr);
@@ -13,8 +13,8 @@ fn test_build_with_nested_logicals() {
                        "(language:@\"Rust lang\" OR language:@\"Haskell lang\")\'"),
                llogical_expr.clone().build());
 
-    let rlexpr = phrase_expr("Ruby lang").column("language").prepare().to_fragment();
-    let rrexpr = phrase_expr("Python lang").column("language").prepare().to_fragment();
+    let rlexpr = phrase_expr("Ruby lang").column("language").prepare().unwrap().to_fragment();
+    let rrexpr = phrase_expr("Python lang").column("language").prepare().unwrap().to_fragment();
     let rlogical_or_expr = logical::or(rlexpr, rrexpr).to_group();
     let rcomb_lexpr = greater_equal_expr("n_likes", "10").prepare().to_fragment();
     let rlogical_expr = logical::group(rcomb_lexpr, rlogical_or_expr);

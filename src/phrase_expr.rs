@@ -39,16 +39,16 @@ impl<'a> PhraseExpr<'a, Unescaped> {
     /// ## Panics
     ///
     /// When target does not contain ' '(space).
-    pub fn prepare(self) -> PhraseExpr<'a, Escaped> {
+    pub fn prepare(self) -> Result<PhraseExpr<'a, Escaped>, String> {
         if self.is_invalid() {
-            panic!("Target must be contain space(s).");
+            return Err("Target must be contain space(s).".to_string());
         }
 
-        PhraseExpr {
+        Ok(PhraseExpr {
             target: format!("{}", Escape(&*self.target.into_owned())).into(),
             column: self.column,
             _marker: PhantomData,
-        }
+        })
     }
 }
 
@@ -91,11 +91,11 @@ mod tests {
     #[test]
     fn test_prepare() {
         let expr = PhraseExpr::new("a phrase").prepare();
-        let expected = PhraseExpr::<Escaped> {
+        let expected = Ok(PhraseExpr::<Escaped> {
             target: Cow::Borrowed("a phrase"),
             column: None,
             _marker: PhantomData,
-        };
+        });
         assert_eq!(expected, expr)
     }
 
@@ -109,14 +109,14 @@ mod tests {
 
     #[test]
     fn test_build() {
-        let expr = PhraseExpr::new("a phrase").prepare().build();
+        let expr = PhraseExpr::new("a phrase").prepare().unwrap().build();
         let expected = "\"a phrase\"";
         assert_eq!(expected, expr)
     }
 
     #[test]
     fn test_build_with_column() {
-        let expr = PhraseExpr::new("a phrase").column("target").prepare().build();
+        let expr = PhraseExpr::new("a phrase").column("target").prepare().unwrap().build();
         let expected = "target:@\"a phrase\"";
         assert_eq!(expected, expr)
     }

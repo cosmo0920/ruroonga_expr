@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn test_build() {
-        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().to_fragment();
+        let lexpr = PhraseExpr::new("Rust lang").column("language").prepare().unwrap().to_fragment();
         let rexpr = GreaterEqualExpr::new("n_likes", "10").prepare().to_fragment();
         let logical_and_expr = LogicalOrBuilder::new(lexpr, rexpr);
         let result = logical_and_expr.build();
