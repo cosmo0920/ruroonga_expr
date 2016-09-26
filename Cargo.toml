@@ -1,6 +1,6 @@
 [package]
 name = "ruroonga_expr"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Hiroshi Hatake <cosmo0920.wp@gmail.com>"]
 keywords = ["groonga"]
 description = "A tiny Groonga expression builder and generator."
