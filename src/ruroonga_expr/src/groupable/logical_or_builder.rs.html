@@ -157,7 +157,7 @@
 
     <span class='attribute'>#[<span class='ident'>test</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>test_build</span>() {
-        <span class='kw'>let</span> <span class='ident'>lexpr</span> <span class='op'>=</span> <span class='ident'>PhraseExpr</span>::<span class='ident'>new</span>(<span class='string'>&quot;Rust lang&quot;</span>).<span class='ident'>column</span>(<span class='string'>&quot;language&quot;</span>).<span class='ident'>prepare</span>().<span class='ident'>to_fragment</span>();
+        <span class='kw'>let</span> <span class='ident'>lexpr</span> <span class='op'>=</span> <span class='ident'>PhraseExpr</span>::<span class='ident'>new</span>(<span class='string'>&quot;Rust lang&quot;</span>).<span class='ident'>column</span>(<span class='string'>&quot;language&quot;</span>).<span class='ident'>prepare</span>().<span class='ident'>unwrap</span>().<span class='ident'>to_fragment</span>();
         <span class='kw'>let</span> <span class='ident'>rexpr</span> <span class='op'>=</span> <span class='ident'>GreaterEqualExpr</span>::<span class='ident'>new</span>(<span class='string'>&quot;n_likes&quot;</span>, <span class='string'>&quot;10&quot;</span>).<span class='ident'>prepare</span>().<span class='ident'>to_fragment</span>();
         <span class='kw'>let</span> <span class='ident'>logical_and_expr</span> <span class='op'>=</span> <span class='ident'>LogicalOrBuilder</span>::<span class='ident'>new</span>(<span class='ident'>lexpr</span>, <span class='ident'>rexpr</span>);
         <span class='kw'>let</span> <span class='ident'>result</span> <span class='op'>=</span> <span class='ident'>logical_and_expr</span>.<span class='ident'>build</span>();
